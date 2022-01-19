@@ -10,3 +10,6 @@ Calculator is created using javascript, html, css
 ## Deployment 
 For deployment Microsoft azure is used <br/>
 Storage Account is one of the Microsoft azure service in which static website is deployed.
+
+### Demonstration
+[https://drive.google.com/file/d/13N4hxISHRYuHffSKAfGD0icQ-nrXt09B/view?usp=sharing](https://drive.google.com/file/d/13N4hxISHRYuHffSKAfGD0icQ-nrXt09B/view?usp=sharing)

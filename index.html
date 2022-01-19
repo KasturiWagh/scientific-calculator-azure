@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-stretch: expanded;
+        background-color: #D5F3FE;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 5em;
+
+
+    }
+
+    .calculator {
+        display: inline-block;
+        padding: 1rem 2rem 2rem 2rem;
+        border: none;
+        border-radius: 10px;
+        background-color: #0F5298;
+
+    }
+
+    table {
+        margin-top: 1em;
+    }
+
+    button {
+        margin: 0.5rem;
+        height: 3rem;
+        width: 6rem;
+        background-color: #D5F3FE;
+        border: 0px;
+        font-size: 25px;
+        border-radius: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    #number {
+        background-color: #66D3FA;
+    }
+
+    #number:hover {
+        background-color: #3C99DC;
+    }
+
+    input {
+        width: 43rem;
+        height: 2.5rem;
+        border: none;
+        font-size: 25px;
+        display: block;
+    }
+
+    #screen {
+        border-top: 0px;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    #screen2 {
+        border-bottom: 0px;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    button:hover {
+        background-color: #3C99DC;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>Calculator</h1>
+            <input type="text" name="screen2" id="screen2">
+            <input type="text" name="screen" id="screen">
+
+            <table>
+                <tr>
+                    <td><button>(</button></td>
+                    <td><button>)</button></td>
+                    <td><button>%</button></td>
+                    <td><button>Clear</button></td>
+                    <td><button>~</button></td>
+                    <td><button>sin</button></td>
+                </tr>
+                <tr>
+                    <td><button id="number">7</button></td>
+                    <td><button id="number">8</button></td>
+                    <td><button id="number">9</button></td>
+                    <td><button>X</button></td>
+                    <td><button>π</button></td>
+                    <td><button>cos</button></td>
+                </tr>
+                <tr>
+                    <td><button id="number">4</button></td>
+                    <td><button id="number">5</button></td>
+                    <td><button id="number">6</button></td>
+                    <td><button>-</button></td>
+                    <td><button>ln</button></td>
+                    <td><button>tan</button></td>
+                </tr>
+                <tr>
+                    <td><button id="number">1</button></td>
+                    <td><button id="number">2</button></td>
+                    <td><button id="number">3</button></td>
+                    <td><button>+</button></td>
+                    <td><button>log10</button></td>
+                    <td><button>!</button></td>
+                </tr>
+                <tr>
+                    <td><button>.</button></td>
+                    <td><button id="number">0</button></td>
+                    <td><button>/</button></td>
+                    <td><button id='eq'>=</button></td>
+                    <td><button>x^2</button></td>
+                    <td><button>√</button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</body>
+<script>
+    let screen = document.getElementById('screen');
+    let screen2 = document.getElementById('screen2');
+    buttons = document.querySelectorAll('button');
+    let screenValue = '';
+    for (item of buttons) {
+        item.addEventListener('click', (e) => {
+            buttonText = e.target.innerText;
+
+
+            if (buttonText == 'Clear') {
+                screen.value = '';
+            }
+
+            else if (buttonText == '=') {
+                screenValue = screen.value;
+                screen.value = eval(screenValue);
+                screen2.value = screenValue + " = ";
+            }
+
+
+            else if (buttonText == '~') {
+                screenValue = screen.value;
+                let myarr = screenValue.split("");
+                console.log(myarr);
+                let ee = '';
+                for (let i = 0; i < myarr.length - 1; i++) {
+                    const element = myarr[i];
+                    // console.log(element);
+                    ee = ee + element;
+                    // screen.value = ee;
+                    // console.log(ee);   
+                }
+                screen.value = ee;
+
+            }
+
+            else if (buttonText == 'X') {
+                buttonText = '*';
+                screen.value += buttonText;
+            }
+
+            else if (buttonText == 'π') {
+                buttonText = Math.PI;
+                screen.value += buttonText;
+            }
+
+            else if (buttonText == 'ln') {
+                buttonText = screen.value;
+                screen.value = Math.log(buttonText);
+            }
+
+            else if (buttonText == 'log10') {
+                buttonText = screen.value;
+                screen.value = Math.log10(buttonText);
+            }
+
+            else if (buttonText == '√') {
+                buttonText = screen.value;
+                screen.value = Math.sqrt(buttonText);
+            }
+
+            else if (buttonText == 'x^2') {
+                buttonText = screen.value;
+                screen.value = Math.pow(buttonText, 2);
+            }
+
+            else if (buttonText == 'sin') {
+                buttonText = screen.value;
+                screen.value = Math.sin(buttonText);
+            }
+
+            else if (buttonText == 'cos') {
+                buttonText = screen.value;
+                screen.value = Math.cos(buttonText);
+            }
+
+            else if (buttonText == 'tan') {
+                buttonText = screen.value;
+                screen.value = Math.tan(buttonText);
+
+            }
+
+            else if (buttonText == '!') {
+                buttonText = screen.value;
+                let ans = 1;
+                if (buttonText == 0 || buttonText == 1) {
+                    screen.value = 1;
+                }
+                else {
+                    for (let i = buttonText; i >= 1; i--) {
+                        ans = ans * i;
+                    }
+                    screen.value = ans;
+                }
+            }
+
+            else {
+                screen.value += buttonText;
+            }
+
+        });
+
+    }
+
+</script>
+
+</html>
